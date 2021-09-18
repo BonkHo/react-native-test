@@ -1,27 +1,34 @@
-import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet } from "react-native";
 
-export default function App() {
+// Components
+import HomeScreen from "./components/HomeScreen";
+import DetailsScreen from "./components/DetailsScreen";
+
+const Stack = createNativeStackNavigator();
+
+function App() {
     return (
-        <View style={styles.container}>
-            <View style={styles.viewOne}>
-                <Text style={styles.text}>Wow this is amazing!</Text>
-            </View>
-            <View style={styles.viewTwo}>
-                <Text style={styles.text}>Wow this is amazing!</Text>
-            </View>
-            <View style={styles.viewThree}>
-                <Image
-                    style={styles.catPhoto}
-                    source={require("./assets/cutecat.jpg")}
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Home">
+                <Stack.Screen
+                    name="Home"
+                    component={HomeScreen}
+                    options={{ title: "Overview" }}
                 />
-            </View>
-
-            <StatusBar style="auto" />
-        </View>
+                <Stack.Screen
+                    name="Details"
+                    component={DetailsScreen}
+                    initialParams={{ itemId: 42 }}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
+
+export default App;
 
 const styles = StyleSheet.create({
     container: {
