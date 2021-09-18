@@ -16,7 +16,17 @@ function App() {
                 <Stack.Screen
                     name="Home"
                     component={HomeScreen}
-                    options={{ title: "Overview" }}
+                    options={{
+                        name: "Home",
+                        headerTitleAlign: "center",
+                        headerStyle: {
+                            backgroundColor: "#f4511e",
+                        },
+                        headerTintColor: "#fff",
+                        headerTitleStyle: {
+                            fontWeight: "bold",
+                        },
+                    }}
                 />
                 <Stack.Screen
                     name="Details"
